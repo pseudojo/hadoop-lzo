@@ -129,6 +129,7 @@
   <path id="classpath">
     <pathelement location="${build.classes}"/>
     <fileset dir="${lib.dir}">
+      <include name="*.jar" />
       <include name="**/*.jar" />
       <exclude name="**/excluded/" />
     </fileset>
@@ -145,6 +146,7 @@
     <pathelement location="${build.examples}"/>
     <pathelement location="${build.tools}"/>
     <fileset dir="${test.lib.dir}">
+      <include name="*.jar" />
       <include name="**/*.jar" />
       <exclude name="**/excluded/" />
     </fileset>
@@ -263,7 +265,7 @@
     <mkdir dir="${build.native}/lib"/>
     <mkdir dir="${build.native}/src/com/hadoop/compression/lzo"/>
 
-    <javah classpath="${build.classes}"
+    <javah classpath="${build.classes}:${lib.dir}/*.jar:${lib.dir}/**/*.jar"
   	   destdir="${build.native}/src/com/hadoop/compression/lzo"
            force="yes"
   	   verbose="yes">
